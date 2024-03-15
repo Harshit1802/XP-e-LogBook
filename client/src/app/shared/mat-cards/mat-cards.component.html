@@ -1,0 +1,17 @@
+<div class="box">
+
+<mat-card matRipple  (click)="onCardClick(item , controlConfig.event)"  class="clickable-flex" *ngFor="let item of pendingTask">
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.patientName}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.mrn}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.taskType}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.taskWeekDateRange}}</b></mat-label>
+    </div>
+</mat-card>
+</div>

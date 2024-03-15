@@ -1,0 +1,20 @@
+{
+    "pageTitle": "Security  Manager",
+    "type": "popup",
+    "pageTitlePrefix": "addedit",
+    "tabs": [
+        {
+            "tabName": "Manage User",
+            "contentType": "json",
+            "content": "user-list"
+        },
+        {
+            "tabName": "Roles",
+            "contentType": "json",
+            "content": "role"
+        }
+        
+        
+      
+    ]
+}

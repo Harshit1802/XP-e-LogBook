@@ -1,0 +1,55 @@
+<!-- {{dateRange | json}}
+<br />
+{{range | json}}
+<br /><br /><br />
+
+<button type="button"
+  mat-icon-button
+  (click)="previousClicked()"s
+  [disabled]="!previousEnabled()"
+>
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+<button type="button" mat-icon-button (click)="nextClicked()" [disabled]="!nextEnabled()">
+  <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
+
+<div style="display:flex;">
+  <div style="flex:0 0 200px;">
+    <mat-month-view
+      [(activeDate)]="firstMonth"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [selected]="dateRange"
+      (selectedChange)="selectedChange($event)"
+      #matMonthView1
+    ></mat-month-view>
+  </div>
+
+  <div style="flex:0 0 200px;">
+    <mat-month-view
+      [(activeDate)]="secondMonth"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [selected]="dateRange"
+      (selectedChange)="selectedChange($event)"
+      #matMonthView2
+    ></mat-month-view>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br /><br />
+
+<mat-form-field appearance="fill" style="width: 100%;">
+  <mat-label>Enter a date range</mat-label>
+  <mat-date-range-input [min]="minDate" [max]="maxDate" [rangePicker]="picker">
+    <input matStartDate placeholder="Start date" [(ngModel)]="range.start" />
+    <input matEndDate placeholder="End date" [(ngModel)]="range.end" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field> -->
+
+<div style="display: flex;" class="drop-calendar">
+  <mat-calendar style="width: 70%;" [selected]="dateRange"></mat-calendar>
+</div>

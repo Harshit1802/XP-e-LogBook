@@ -1,0 +1,42 @@
+<div *ngIf="draggable">
+    <div style="display: flex;min-height: 2rem;">
+        <input #fileUpload type="file" hidden (input)="onInput($event)" (change)="onFileSelected($event)"
+            [(ngModel)]="inputFileName" [accept]="accept">
+        Drag the file here or click here to choose
+    </div>
+    <div style="display: flex;">
+        <button type="button" style="width: 100%; position: relative; margin-bottom: 15px;" mat-raised-button
+            color="primary" (click)="onClick($event)">
+            <mat-icon>add</mat-icon>
+            {{chooseLabel}}
+        </button>
+        <p *ngIf="selectedFileName" style="position: absolute; top: 75px; width: fit-content;">{{ selectedFileName }}
+            <button mat-icon-button color="warn" (click)="removeFile(selectedFileName)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </p>
+    </div>
+</div>
+<div *ngIf="!draggable">
+    <input #fileUpload type="file" hidden (input)="onInput($event)" (change)="onFileSelected($event)"
+        [(ngModel)]="inputFileName" [accept]="accept">
+    <mat-form-field class="example-form-field">
+        <mat-label>Clearable input</mat-label>
+        <input matInput type="text" [(ngModel)]="selectedFileName" readonly>
+        <button matSuffix mat-mini-fab color="warn" (click)="removeFile(selectedFileName)"
+            *ngIf="selectedFileName && selectedFileName.length > 0">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button type="button" matSuffix mat-raised-button color="primary" (click)="onClick($event)"
+            *ngIf="chooseLabel && chooseLabel.length > 0">
+            <mat-icon>add</mat-icon>
+            {{chooseLabel}}
+        </button>
+        <button type="button" matSuffix mat-mini-fab color="primary" (click)="onClick($event)"
+            *ngIf="!chooseLabel || chooseLabel.length == 0" style="margin-left: 8px;">
+            <mat-icon>add</mat-icon>
+        </button>
+
+    </mat-form-field>
+
+</div>

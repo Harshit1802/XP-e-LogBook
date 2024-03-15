@@ -1,0 +1,91 @@
+{
+    "pageTitle": "Manage Permission",
+    "type": "popup",
+    "pageConfig": {
+        "parentPageJson": "permission",
+        "onPopupClose": "refresh",
+        "defaultData": "parent",
+        "footerActions": [
+            {
+                "type": "button",
+                "label": "Cancel",
+                "icon": "",
+                "event": {
+                    "type": "click",
+                    "onevent": "closeandrefreshparent",
+                    "api": ""
+                }
+            },
+            {
+                "type": "button",
+                "label": "Save",
+                "icon": "plus",
+                "event": {
+                    "type": "click",
+                    "onevent": "postformdata",
+                    "api": "api/permission/permissions"
+                }
+            }
+        ]
+    },
+    "formConfig": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "width": 12,
+                        "height": "2",
+                        "controls": [
+                            {
+                                "label": "Module Name",
+                                "id": "txtModule",
+                                "type": "text",
+                                "fieldId": "moduleName",
+                                "placeholder": "Module Name",
+                                "tooltip": "",
+                                "validations": [
+                                    {
+                                        "type": "required",
+                                        "message": "Module Name is required"
+                                    }
+                                ],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "columns": [
+                    {
+                        "width": 12,
+                        "height": "2",
+                        "controls": [
+                            {
+                                "label": "Permission",
+                                "id": "txtPermission",
+                                "type": "text",
+                                "fieldId": "permissionName",
+                                "placeholder": "Permission",
+                                "tooltip": "",
+                                "validations": [
+                                    {
+                                        "type": "required",
+                                        "message": "Permission is required"
+                                    }
+                                ],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

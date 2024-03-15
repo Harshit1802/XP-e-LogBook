@@ -1,0 +1,86 @@
+{
+    "pageTitle": "User Roles & Types",
+    
+    "breadcrumbs": [
+        {
+            "menuName": "Dashboard",
+            "url": "/app/landing"
+        },
+        {
+            "menuName": "Plant",
+            "url": ""
+        }
+    ],
+    "pageActions": [
+        {
+            "type": "button",
+            "label": "Add Role",
+            "icon": "add",
+            "event": {
+                "type": "click",
+                "onevent": "popup",
+                "popupJson": "role-manage",
+                "popupwidth":"60%"
+            }
+        },
+        {
+            "action": "refresh"
+        },
+        {
+            "action": "export"
+        },
+        {
+            "action": "filter"
+        }
+    ],
+    "filter": [
+        {
+            "name": "roleName",
+            "type": "textbox",
+            "placeholder": "Role"
+        }
+    ],
+    "table": {
+        "dataSource": "api/role/roles",
+        "tableColumns": [
+            {
+                "key": "name",
+                "title": "Name"
+            },
+            {
+                "key": "location",
+                "title": "Location"
+            },
+            {
+                "key": "action",
+                "title": "",
+                "actions":[
+                    {
+                        "type": "icon-button",
+                        "label": "Edit",
+                        "icon": "edit",
+                        "isDisabled":"false",
+                        "event": {
+                            "type": "click",
+                            "onevent": "popup",
+                            "popupJson": "role-manage"
+                        }
+                    },
+                    {
+                        "type": "Delete",
+                        "label": "Delete",
+                        "icon": "delete",
+                        "isDisabled": "false",
+                        "event": {
+                            "type": "click",
+                            "onevent": "popup",
+                            "popupJson": "confirmation-popup",
+                            "popupwidth": "25%",
+                            "api": "api/role/roles"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

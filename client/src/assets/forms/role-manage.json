@@ -1,0 +1,95 @@
+{
+    "pageTitle": "Role",
+    "type": "popup",
+    "pageConfig": {
+        "parentPageJson": "role",
+        "onPopupClose": "refresh",
+        "defaultData":"parent",
+        "footerActions": [
+            {
+                "type": "button",
+                "label": "Cancel",
+                "icon": "",
+                "event": {
+                    "type": "click",
+                    "onevent": "closeandrefreshparent",
+                    "api": ""
+                }
+            },
+            {
+                "type": "button",
+                "label": "Save",
+                "icon": "plus",
+                "event": {
+                    "type": "click",
+                    "onevent": "postformdata",
+                    "api": "api/role/roles"
+                }
+            }
+        ]
+    },
+    "formConfig": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "width": 12,
+                        "height": "2",
+                        "controls": [
+                            {
+                                "label": "Role",
+                                "id": "txtRole",
+                                "type": "text",
+                                "fieldId": "name",
+                                "placeholder": "Role",
+                                "tooltip": "",
+                                "validations": [
+                                    {
+                                        "type": "required",
+                                        "message": "Role is required"
+                                    }
+                                ],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "columns": [
+                    {
+                        "width": 24,
+                        "controls": [
+                            {
+                                "label": "Select Permissions",
+                                "id": "cblPermissions",
+                                "type": "checkboxlist",
+                                "fieldId": "permissions",
+                                "placeholder": "",
+                                "tooltip": "",
+                                "validations": [],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": "",
+                                "options": {
+                                    "dataSource": "api/permission/allPermissions",
+                                    "dataSourceType": "api",
+                                    "expandable":"true",
+                                    "groupField":"module",
+                                    "dataField":"permissions",
+                                    "textField": "name",
+                                    "valueField": "_id"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            } 
+           
+        ]
+    }
+}

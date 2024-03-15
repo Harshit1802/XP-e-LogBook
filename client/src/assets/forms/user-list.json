@@ -1,0 +1,119 @@
+{
+    "pageTitle": "Users",
+    "breadcrumbs": [
+        {
+            "menuName": "Dashboard",
+            "url": "/app/landing"
+        },
+        {
+            "menuName": "Users",
+            "url": ""
+        }
+    ],
+    "defaultData": "parent",
+    "pageActions": [
+        {
+            "type": "button",
+            "label": "Add User",
+            "icon": "add",
+            "event": {
+                "type": "click",
+                "onevent": "popup",
+                "popupJson": "user-manage",
+                "popupwidth": "60%"
+            }
+        },
+        {
+            "action": "refresh"
+        },
+        {
+            "action": "export"
+        },
+        {
+            "action": "filter"
+        }
+    ],
+    "filter": [
+        {
+            "name": "username",
+            "type": "textbox",
+            "placeholder": "User Name"
+        },
+        {
+            "name": "roles",
+            "type": "select",
+            "placeholder": "Select User Role"
+        },
+        {
+            "name": "phone",
+            "type": "textbox",
+            "placeholder": "Phone No."
+        },
+        {
+            "name": "email",
+            "type": "textbox",
+            "placeholder": "Email"
+        }
+    ],
+    "table": {
+        "dataSource": "api/users",
+        "tableColumns": [
+         
+            {
+                "key": "lastName",
+                "title": "Last Name"
+            },
+            {
+                "key": "firstName",
+                "title": "First Name"
+            },
+            {
+                "key": "username",
+                "title": "User Id"
+            },
+            {
+                "key": "roles",
+                "title": "Role",
+                "dataType": "array",
+                "options": {
+                    "displayKey": "name"
+                }
+            },
+            {
+                "key": "phone",
+                "title": "Phone No."
+            },
+            {
+                "key": "email",
+                "title": "Email"
+            },
+            {
+                "key": "active",
+                "title": "Active"
+            },
+            {
+                "dataType":"slide-toggle",
+                "key": "isLocked",
+                "title": "Locked"
+            },
+            {
+                "key": "action",
+                "title": "Action",
+                "actions": [
+                    {
+                        "type": "Edit",
+                        "label": "Edit",
+                        "icon": "edit",
+                        "isDisabled": "false",
+                        "event": {
+                            "type": "click",
+                            "onevent": "popup",
+                            "popupJson": "user-manage",
+                            "popupwidth": "60%"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

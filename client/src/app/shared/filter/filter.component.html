@@ -1,0 +1,55 @@
+<div class="search-wrapper">
+    <div class="search-nav">
+        <div class="title">
+            Search Filter
+        </div>
+        <div class="action">
+            <div class="applied-count">Total Applied : <span>{{filterCount}}</span> </div>
+            <div class="clear-filter" (click)="clearFilter()">Clear Filters</div>
+        </div>
+    </div>
+    <div >
+        <form nz-form class="search-filter" *ngIf="controls && controls.length>0">
+            <div class="search-field" *ngFor="let control of controls; trackBy:focusControlByFn">
+                <nz-form-item *ngIf="control.type=='textbox'">
+                    <nz-form-control >
+                        <input nz-input class="search-field-txt" [name]="control.name" [type]="control.type" [id]="control.name"
+                           [placeholder]="control.placeholder" [(ngModel)]="control.value" (ngModelChange)="change($event)" >
+                           <!-- <span>{{control.placeholder}}</span> -->
+                    </nz-form-control>
+                    
+                </nz-form-item>
+                <nz-form-item *ngIf="control.type=='select'">
+                    <nz-form-control >
+                        <nz-select nzAllowClear nzShowSearch [name]="control.name" [id]="control.name" [nzPlaceHolder]="control.placeholder"
+                            [(ngModel)]="control.value" (ngModelChange)="selectedValueChanged(control)" >
+                            <nz-option *ngFor="let action of control.options" [nzValue]="action.value"
+                                [nzLabel]="action.text"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item *ngIf="control.type=='date'">
+                    <nz-form-control >
+                        <nz-date-picker [name]="control.name" [nzFormat]="control.format" [id]="control.name" [nzPlaceHolder]="control.placeholder"
+                        [(ngModel)]="control.value" (ngModelChange)="change($event)" ></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item *ngIf="control.type=='rangePicker'">
+                    <nz-form-control>
+                      <nz-range-picker [name]="control.name" [nzFormat]="control.format" [id]="control.name" [nzPlaceHolder]="control.placeholder"
+                      [(ngModel)]="control.value"  (ngModelChange)="change($event)" >
+                    </nz-range-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+            </div>
+            <div>
+                <button  class="search-btn" nz-button (click)="searchClick()">Search</button>                
+            </div>
+        </form>
+        <!-- <div class="search-btn"  nz-button (click)="searchClick()">
+            Search
+        </div> -->
+    </div>
+    
+
+</div>

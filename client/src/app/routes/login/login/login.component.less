@@ -1,0 +1,316 @@
+.page-body{
+  display: flex;
+flex: 1;
+  .left-wrapper{
+      background: url(^assets/img/revamp/login-bg.svg);
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 50%;
+      .explore-wrapper{
+          width: 500px;
+          .img{
+              width: 500px;
+          }
+          
+      }
+  }
+  .right-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 50%;
+      flex-direction: column;
+      row-gap: 35px;
+      .logo-welcome{
+          display: flex;
+          flex-direction: column;
+          row-gap: 40px;
+          align-items: center;
+          .logo{
+
+          }
+          .welcome{
+              text-align: center;
+              .t1{
+                  font-size: 28px;
+                  color: #8ABB2A;
+                  font-weight: bold;
+              }
+              .t2{
+                  font-size: 34px;
+                  color: #1A276B;  
+                  font-weight: bold;                  
+              }
+          }
+      }
+      .cred-wrapper{
+          display: flex;
+          flex-direction: column;
+          row-gap: 20px; 
+          .logged-user-wrapper{
+              width: 401px;
+              height: 67px;
+              background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+              background: #FFFFFF 0% 0% no-repeat padding-box;
+              box-shadow: 0px 0px 6px #00000029;
+              border-radius: 6px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 20px 15px 15px;
+              .initial-name{
+                  display: flex;
+                  gap: 11px;
+                 
+                  .initial{
+                      width: 36px;
+                      height: 36px;
+                      /* UI Properties */
+                      background: #8993D4 0% 0% no-repeat padding-box;
+                      border-radius: 6px;
+                      font-size: 14px;
+                      color: #FFFFFF;
+                      font-weight: bold;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                  }
+                  .name-email{
+
+                      .name{
+                          font-size: 16px;
+                          color: #1A276B;
+                          font-weight: bold;
+                      }
+                      .email{
+                          font-size: 13px;
+                          color: #6B778E;
+                      }
+                  }
+              }
+              .close{
+                  width: 34px;
+                  height: 34px;
+                  /* UI Properties */
+                  background: #E3E5F2 0% 0% no-repeat padding-box;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .img{
+                      width: 12px;
+                      height: 12px;
+                  }
+              }
+          }  
+          .common-box{
+              display: flex;
+              flex-direction: column;
+              row-gap: 11px;
+              .txt{
+                  font-size: 15px;
+                  color: #6B778E;
+                  span{
+                      color: #FF0000;
+                  }
+              }
+              .val{
+                  width: 401px;
+                 
+                  /* UI Properties */
+                  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+                  background: #FFFFFF 0% 0% no-repeat padding-box;
+                  //border: 1px solid #ADB1C9;
+                  border-radius: 6px;    
+              }
+          }
+          .new-user-btn{
+              margin-top: 10px;
+              width: 401px;
+              height: 55px;
+              /* UI Properties */
+              background: transparent linear-gradient(180deg, #627DC7 0%, #3B5497 100%) 0% 0% no-repeat padding-box;
+              border-radius: 5px;                
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 11px;
+              
+              .img{
+
+              }
+              .txt{
+                  font-size: 16px;
+                  color: #FFFFFF;
+              }
+          }
+          .btn{
+              margin-top: 10px;
+              width: 401px;
+              height: 55px;
+              /* UI Properties */
+              background: transparent linear-gradient(180deg, #627DC7 0%, #3B5497 100%) 0% 0% no-repeat padding-box;
+              border-radius: 5px;
+              font-size: 16px;
+              color: #FFFFFF;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+          .remember{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              
+              .txt{
+                  font-size: 15px;
+                  color: #6B778E;
+              }
+          }
+
+      }
+  }
+}
+
+
+:host::ng-deep  .ant-carousel .slick-slider .slick-list {
+  text-align: center;
+  height: 600px !important;
+  line-height: 160px;
+ // background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) { 
+  .page-body{
+      height: 600px;
+     
+  
+      .left-wrapper{          
+          
+          .explore-wrapper{
+              width: 300px;
+              height: unset;
+              .img{
+                  width: 300px;
+                  height: unset;
+              }
+          }
+      }
+      .right-wrapper{
+         
+          row-gap: 25px;
+          .logo-welcome{
+          
+              row-gap: 30px;
+          
+              .logo{
+                  width: 560px  ;
+              }
+              .welcome{
+     
+                  .t1{
+                      font-size: 22px;
+                      
+                  }
+                  .t2{
+                      font-size: 28px;
+                     
+                                      
+                  }
+              }
+          }
+          .cred-wrapper{
+            
+              row-gap: 10px; 
+              .logged-user-wrapper{
+                  width: 301px;
+                  height: 47px;
+                  
+                  padding: 10px 15px 10px 10px;
+                  .initial-name{
+                      
+                      gap: 9px;
+                     
+                      .initial{
+                          height: unset;
+                          font-size: 11px;
+                      }
+                      .name-email{
+                          .name{
+                              font-size: 12px;
+                              
+                          }
+                          .email{
+                              font-size: 10px;
+                            
+                          }
+                      }
+                  }
+                  .close{
+                      width: 24px;
+                      height: 24px;
+                      
+                      .img{
+                          width: 12px;
+                          height: 12px;
+                      }
+                  }
+              }  
+              .common-box{
+              
+                  row-gap: 11px;
+                  .txt{
+                      font-size: 11px;
+                  
+                  
+                  }
+                  .val{
+                      width: 301px;
+                     
+                       
+                  }
+              }
+              .new-user-btn{
+                  margin-top: 5px;
+                  width: 301px;
+                  height: 40px;
+                 
+                  gap: 11px;
+                  
+                  .img{
+  
+                  }
+                  .txt{
+                      font-size: 12px;
+                    
+                  }
+              }
+              .btn{
+                  margin-top: 5px;
+                  width: 301px;
+                  height: 40px;
+                  /* UI Properties */
+                  
+              }
+              .remember{
+                
+                  gap: 5px;
+                  .img{
+  
+                  }
+                  .txt{
+                      font-size: 11px;
+                      
+                  }
+              }
+  
+          }
+      }
+  }
+}

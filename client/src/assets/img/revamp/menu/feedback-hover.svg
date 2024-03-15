@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path2403" d="M0-682.665H28v28H0Z" transform="translate(0 682.665)" fill="#1a276b"/>
+    </clipPath>
+  </defs>
+  <g id="feedback-hover" transform="translate(-173.332 509.333)">
+    <g id="g2399" transform="translate(173.332 -509.333)">
+      <g id="g2401" clip-path="url(#clip-path)">
+        <g id="g2407" transform="translate(0.82 9.68)">
+          <path id="path2409" d="M-485.884-99.734v9.406a1.641,1.641,0,0,1-1.641,1.641h-15.859l-3.281,2.188v-15.859A1.641,1.641,0,0,1-505.025-104h10.5" transform="translate(506.665 104)" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        </g>
+        <g id="g2411" transform="translate(16.242 0.82)">
+          <path id="path2413" d="M-166.224-102.291v-2.734a1.641,1.641,0,0,0-1.641-1.641,1.641,1.641,0,0,0-1.641,1.641v.672a2.734,2.734,0,0,1-1.983,2.629l-1.845.527v5.742a3.8,3.8,0,0,0,3.3,1.914h5.452a2.188,2.188,0,0,0,2.188-2.187V-100.1a2.188,2.188,0,0,0-2.188-2.187Z" transform="translate(173.333 106.666)" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        </g>
+        <path id="path2415" d="M316-547.249h3.281V-556H316Z" transform="translate(-303.038 561.194)" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        <g id="g2417" transform="translate(4.102 14.602)">
+          <path id="path2419" d="M0,0H5.469" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        </g>
+        <g id="g2421" transform="translate(4.102 17.883)">
+          <path id="path2423" d="M0,0H14.219" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        </g>
+        <g id="g2425" transform="translate(4.102 21.164)">
+          <path id="path2427" d="M0,0H14.219" fill="none" stroke="#1a276b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

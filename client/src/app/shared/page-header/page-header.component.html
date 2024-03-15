@@ -1,0 +1,73 @@
+<div class="navigation-action">
+    <div class="navbar">
+        <div class="current-page">
+            {{pageTitle}}
+        </div>
+        <div class="nav">
+            <ul class="breadcrumb">
+                <li *ngFor="let item of breadcrumbs; let i = index">
+                    <span *ngIf="item.url && item.url.length > 0" (click)="navigate(item.url)"
+                        style="cursor: pointer;">{{item.menuName}}</span>
+                    <span *ngIf="!item.url || item.url.length < 1">{{item.menuName}}</span>
+                    <!-- <span *ngIf="i != breadcrumbs.length-1"> / </span> -->
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <ng-content></ng-content>
+    </div>
+    <div class="actions" *ngIf="actions" style="display: flex;">
+        <div *ngFor="let action of actions">
+            <div class="" [nzTooltipTitle]="action.label" (click)="actionClick(action)" nz-tooltip
+                *ngIf="action.type=='button'">
+                <button nz-button nzType="primary">
+                    <span *ngIf="action.icon" nz-icon [nzType]="action.icon"></span>
+                    {{action.label}}
+                  </button>
+            </div>
+
+            <div class="refresh common-action" nzTooltipTitle="Refresh" (click)="actionClick(action)" nz-tooltip
+                *ngIf="action.action=='refresh'">
+                <img src="./assets/img/revamp/refresh.svg" alt="">
+            </div>
+
+            <div *ngIf="action.action=='export'">
+                <div nz-tooltip nzTooltipPlacement="top" nzTooltipTitle="Export" nz-dropdown [nzDropdownMenu]="menus"
+                    class="export common-action">
+                    <img src="./assets/img/revamp/export.svg" alt="">
+                </div>
+                <nz-dropdown-menu #menus="nzDropdownMenu">
+                    <ul nz-menu nzSelectable>
+                        <li nz-menu-item>
+                            <a (click)="actionClick('export_xlsx')">
+                                <i nz-icon nzType="file-excel" nzTheme="outline"></i>
+                                Excel </a>
+                        </li>
+                        <li nz-menu-item>
+                            <a (click)="actionClick('export_pdf')">
+                                <i nz-icon nzType="file-pdf" nzTheme="outline"></i>
+                                PDF
+                            </a>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+
+
+            <div class="common-action" nzTooltipTitle="Filter" nz-tooltip (click)="actionClick(action)"
+                *ngIf="action.action=='filter' && filterControls.length > 0" [ngClass]="{'filter': isFilter == true }">
+                <img *ngIf="isFilter==false" src="./assets/img/revamp/flter.svg" alt="">
+                <img *ngIf="isFilter==true" src="./assets/img/revamp/flter-white.svg" alt="">
+                <!-- <img *ngIf="action.options.isFilterApplied==true" class="notification"
+                    src="./assets/img/revamp/notification.svg" alt=""> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<filter *ngIf="isFilter && filterControls.length > 0" [(controls)]="filterControls"></filter>
+
+
+

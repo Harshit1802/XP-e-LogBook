@@ -1,0 +1,57 @@
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+
+//   .main-container {
+//     flex: 1 1 auto;
+//     overflow: auto;
+//     /* to scroll just the "main" div */
+//     background: transparent linear-gradient(180deg, #292566 0%, #3B5497 100%) 0% 0% no-repeat padding-box;
+//     background-size: cover;
+
+
+//     .new-layout-container {
+
+//       background: transparent;
+//       background-repeat: no-repeat;
+//       background-size: 35% 50%;
+//       background-position-y: center;
+//       display: flex;
+//       align-items: center;
+//       align-self: center;
+
+//       .layout {
+//         width: 70% !important;
+//         overflow: hidden;
+
+//         border-radius: 15px;
+//         background-color: #ffff;
+//       }
+
+//     }
+//   }
+// }
+
+*{
+  display: flex;
+}
+.main-container {
+  background: transparent linear-gradient(180deg, #292566 0%, #3B5497 100%) 0% 0% no-repeat padding-box;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  .layout-container {
+    background-color: #ffff;
+    background-size: 35% 50%;
+    background-position-y: center;
+    display: flex;
+    align-items: center;
+    align-self: center;
+   
+    border-radius: 15px;
+ margin: 0;
+
+  }
+}

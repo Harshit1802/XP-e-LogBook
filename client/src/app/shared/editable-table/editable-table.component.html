@@ -1,0 +1,239 @@
+<div style="overflow: auto; height: 400px;">
+  <!-- <div style="position: relative;
+    display: flex;
+    justify-content: flex-end;">
+    <button mat-flat-button color="primary" (click)="addRow()">Add Row</button>
+  </div> -->
+
+  <table #dynTable mat-table [dataSource]="gridData"  *ngIf="table">
+    <ng-container [matColumnDef]="column.key" *ngFor="let column of table.tableColumns; ">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ column.title }}
+      </th>
+      <td mat-cell *matCellDef="let data">
+        <div style="display: flex;">
+          <div *ngIf="data[column.key]">
+            <!--No data type consider as string -->
+            <span class="t2" *ngIf="!column.dataType">
+              <span nz-tooltip [nzTooltipTitle]="data[column.key].length > 24 && data[column.key]"
+                *ngIf="column.restrictText == true">
+                {{data[column.key].length > 24 ? (data[column.key] | slice:0:24)+'...' : data[column.key]}}
+              </span>
+              <span class="t1" *ngIf="!column.restrictText && header?.options?.dataFontColor"
+                [ngStyle]="{'color':data[column.key+'Color'] && column.options && header?.options?.dataFontColor == true ? data[column.key+'Color'] : '' }">
+                {{ data[column.key]}}
+              </span>
+              <span class="t1" *ngIf="!column.restrictText && !header?.options?.dataFontColor"
+                [ngStyle]="{'color':data.fontColor && column.options && column.options.fontColor == true ? data.fontColor : '' }">
+                {{ data[column.key]}}
+              </span>
+            </span>
+            <span *ngIf="column.dataType=='date'">{{data[column.key] | date:column.format}}</span>
+            <span *ngIf="column.dataType=='array'">
+              <span *ngFor="let arr of data[column.key]">
+                {{arr[column.options.displayKey] }}
+              </span>
+            </span>
+            <span *ngIf="column.dataType === 'object'">
+              {{ data[column.key][column.options.displayKey] }}
+            </span>
+            <div *ngIf="column.statusColumn" [ngClass]="getStatusColor(data[column.key])" class="status-bg">
+              <span>{{data[column.key]}}</span>
+            </div>
+          </div>
+          <div *ngIf="column.key === 'checkbox'">
+            <mat-checkbox *ngIf="column.showCheckbox" [(ngModel)]="data.selected" (change)="rowSelectChange(data)">
+            </mat-checkbox>
+          </div>
+          <div *ngIf="column.dataType=='slide-toggle'">
+            <mat-slide-toggle #toggle [(ngModel)]="data[column.key]"></mat-slide-toggle>
+          </div>
+          <div *ngIf="column.key=='action'">
+           
+            <!-- <button type="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button> -->
+            <!-- <mat-menu #menu="matMenu"> -->
+              <button type="button" mat-icon-button *ngFor="let action of column.actions" [disabled]="action.isDisabled == true"
+                (click)="actionItemClick(action,data)">
+                <mat-icon>{{action.icon}}</mat-icon>
+                <!-- <span>{{action.label}}</span> -->
+              </button>
+
+            <!-- </mat-menu> -->
+          </div>
+          <div *ngIf="column.key=='reply'">
+            <button type="button" mat-icon-button *ngFor="let action of column.actions" [disabled]="action.isDisabled == true"
+              (click)="actionItemClick(action,data)">
+              <mat-icon>{{action.icon}}</mat-icon>
+              <span>{{action.label}}</span>
+            </button>
+          </div>
+          <div *ngIf="column.key=='delete'">
+            <button type="button" mat-icon-button *ngFor="let action of column.actions" [disabled]="action.isDisabled == true"
+              (click)="actionItemClick(action,data)">
+              <mat-icon>{{action.icon}}</mat-icon>
+              <span>{{action.label}}</span>
+            </button>
+          </div>
+          <div class="toggle-align"
+            *ngIf="column.key=='statusToggle' || (column.options && column.options.statusToggle)">
+            <nz-switch *ngIf="data.toggleVisible" nz-popconfirm [nzTitle]="getTitle(data,header)"
+              nzPopconfirmPlacement="bottom" nzPopconfirmOverlayClassName="popconfirm" [nzOkText]="'Yes'"
+              nzIcon="null" nzSize="small" [nzCancelText]="'No'" nzTheme="outline" [nzControl]="true"
+              (nzOnConfirm)="actionItemClick('toggle',data)" [(ngModel)]="data.statusToggle">
+            </nz-switch>
+          </div>
+
+
+        </div>
+        <!-- <span *ngIf="!column.controls || column.controls.length > 0">
+          {{element[column.key] |json}}
+        </span> -->
+        <span *ngIf="column.controls && column.controls.length > 0">
+          <ng-container *ngFor="let control of column.controls; ">
+            <div *ngIf="control.type == 'label'">
+              <label [for]="control.fieldId">{{ control.label }}</label>
+          </div>
+          <input *ngIf="control.type == 'hidden'" type="hidden" [formControlName]="control.fieldId" />
+          <div *ngIf="control.type == 'text' || control.type == 'number'">
+      
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>{{control.label}}</mat-label>
+                  <input matInput [type]="control.type" [formControlName]="control.fieldId" [placeholder]="control.label"
+                      (change)="onControlChange()">
+      
+              </mat-form-field>
+              <!-- <ng-container *ngFor="let validation of control.validations">
+                  <mat-error class="error-message"
+                      *ngIf="group && group.get(control.fieldId) && group.get(control.fieldId).hasError(validation.type) && (group.get(control.fieldId).dirty || group.get(control.fieldId).touched)">
+                      {{validation.message}}</mat-error>
+              </ng-container> -->
+      
+          </div>
+          <div *ngIf="control.type == 'textarea'">
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+                  <textarea matInput [formControlName]="control.fieldId" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+      
+          </div>
+          <div *ngIf="control.type == 'select'">
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+                  <mat-select [formControlName]="control.fieldId">
+                      <mat-option>None</mat-option>
+                      <ng-container *ngIf="config && control.options && control.options.list && control.options.list.length > 0">
+                          <ng-container *ngFor="let l of control.options.list">
+                              <mat-option
+                                  [value]="l[control.options?.valueField]">{{l[control.options?.textField]}}</mat-option>
+                          </ng-container>
+                      </ng-container>
+      
+                  </mat-select>
+              </mat-form-field>
+      
+          </div>
+          <div *ngIf="control.type == 'multiselect'">
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+                  <mat-select [formControlName]="control.fieldId" multiple>
+                      <mat-option>None</mat-option>
+                      <ng-container *ngIf="config && control.options && control.options.list && control.options.list.length > 0">
+                          <ng-container *ngFor="let l of control.options.list">
+                              <mat-option
+                                  [value]="l[control.options?.valueField]">{{l[control.options?.textField]}}</mat-option>
+                          </ng-container>
+                      </ng-container>
+      
+                  </mat-select>
+              </mat-form-field>
+      
+          </div>
+          <div *ngIf="control.type == 'fileupload'">
+              <label [for]="control.fieldId">{{ control.label }}</label>
+              <fileUpload (onFileChange)="onFileChange($event)"></fileUpload>
+          </div>
+      
+          <div *ngIf="control.type == 'radiobutton'">
+              <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+              <mat-radio-group [formControlName]="control.fieldId">
+                  <ng-container *ngIf="config && control.options && control.options.list && control.options.list.length > 0">
+                      <ng-container *ngFor="let l of control.options.list">
+                          <mat-radio-button color="primary"
+                              [value]="l[control.options?.valueField]">{{l[control.options?.textField]}}</mat-radio-button>
+                      </ng-container>
+                  </ng-container>
+              </mat-radio-group>
+          </div>
+      
+          <div *ngIf="control.type == 'date'">
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+                  <input matInput [matDatepicker]="picker" [formControlName]="control.fieldId">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div *ngIf="control.type == 'time'">
+      
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.fieldId">{{control.label}}</mat-label>
+                  <input matInput [formControlName]="control.fieldId" [ngxMatTimepicker]="pickerA" readonly />
+                  <mat-icon matSuffix (click)="pickerA.open()">
+                      watch_later
+                  </mat-icon>
+              </mat-form-field>
+              <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+      
+          </div>
+      
+          <div *ngIf="control.type == 'checkbox'">
+              <mat-checkbox [formControlName]="control.fieldId" color="primary">
+                  {{control.label}}
+              </mat-checkbox>
+          </div>
+  
+            <!-- <ng-container [ngSwitch]="control.type">
+              <ng-container *ngSwitchCase="'text'">
+                <mat-form-field appearance="outline" class="full-width">
+                  <input [type]="control.type" matInput [(ngModel)]="element[column.key]"
+                    (ngModelChange)="onCellValueChanged(gridData)"  />
+                </mat-form-field>
+              </ng-container>
+              <ng-container *ngSwitchCase="'select'">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label [for]="control.key">{{column.title}}</mat-label>
+                  <mat-select (ngModelChange)="onCellValueChanged(gridData)" [disabled]="element.isEditable==true">
+                    <mat-option>None</mat-option>
+                    <ng-container>
+                      <ng-container>
+                        <mat-option></mat-option>
+                      </ng-container>
+                    </ng-container>
+  
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>
+              <ng-container *ngSwitchCase="'date'">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="element[column.key]"
+                    (ngModelChange)="onCellValueChanged(gridData)" [disabled]="element.isEditable==true" />
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </ng-container>
+              <ng-container *ngSwitchDefault>{{control.type}}</ng-container>
+            </ng-container> -->
+          </ng-container>
+        </span>
+       
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

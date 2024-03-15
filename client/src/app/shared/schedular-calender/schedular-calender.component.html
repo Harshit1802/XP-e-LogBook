@@ -1,0 +1,7 @@
+
+    <!-- <div style="display: flex;" class="drop-calendar">
+        <mat-calendar style="width:70%;"></mat-calendar>
+      </div> -->
+      <full-calendar *ngIf="options" [events]="eventsModel" [header]="options.header" [plugins]="options.plugins">
+      </full-calendar>
+     

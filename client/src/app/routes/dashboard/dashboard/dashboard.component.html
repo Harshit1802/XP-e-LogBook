@@ -1,0 +1,14 @@
+<!-- <dynamic-form></dynamic-form> -->
+
+<div *ngIf="page && page.formConfig">
+  <dynamic-form
+  [config]="page.formConfig"
+  #form="dynamicForm"
+  (submit)="submit($event)">
+</dynamic-form>
+
+</div>
+
+<app-rn-dashboard></app-rn-dashboard>
+      <!-- {{ form.valid }}
+      {{ form.value | json }} -->

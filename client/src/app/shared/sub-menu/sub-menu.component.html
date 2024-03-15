@@ -1,0 +1,21 @@
+<div class="top-sub-menu">
+    <div  *ngFor="let submenu of subMenuItems" (click)="navigate(submenu.url)">
+        <div class="select-menu-wrap">
+            <span *ngIf="submenu.url == currentURL" class="selected-sub-menu">{{submenu.menuName}}</span>
+            <img *ngIf="submenu.url == currentURL" class="selected-menu-bar" src="./assets/img/revamp/selected-sub-menu.svg" alt="">
+        </div>       
+        
+        <span *ngIf="submenu.url != currentURL" class="sub-menu "> {{submenu.menuName}}</span> 
+               
+    </div>
+   
+   
+</div>
+
+<!-- <div class="top-sub-menu">
+    <nz-tabset nzCentered>
+        <nz-tab nzTitle="Tab 1"></nz-tab>
+        <nz-tab nzTitle="Users Analytics Report"></nz-tab>
+       
+      </nz-tabset>
+</div> -->

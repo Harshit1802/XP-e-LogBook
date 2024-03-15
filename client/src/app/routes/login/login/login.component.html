@@ -1,0 +1,103 @@
+<div class="wrapper">
+  <div class="page-body">
+    <div class="left-wrapper">
+      <div class="explore-wrapper">
+        <nz-carousel nzAutoPlay>
+          <div nz-carousel-content *ngFor="let index of programs">
+            <img class="img" src="assets/img/revamp/{{index?.image}}">
+
+            <div>{{index?.title}}</div>
+            <div>{{index?.text}}</div>
+          </div>
+        </nz-carousel>
+      </div>
+    </div>
+    <div class="right-wrapper">
+      <div class="logo-welcome">
+        <img style="width: 560px;;" class="logo" src="assets/img/logo.jpg">
+        <h1>XP e-LogBook</h1>
+      </div>
+      <error-panel *ngIf="errors" [errors]="errors"></error-panel>
+      <div class="cred-wrapper">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+          <div class="common-box">
+            <div class="val">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput placeholder="Username" formControlName="username">
+                
+              </mat-form-field>
+              <mat-error
+                  *ngIf="(formGroup.get('username').dirty || formGroup.get('username').touched) && formGroup.controls['username'].invalid && formGroup.get('username').hasError('required')">
+                  Please enter username
+                </mat-error>
+            </div>
+            <div class="val">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+                <button type= "button"  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+                
+              </mat-form-field>
+              <mat-error
+                  *ngIf="(formGroup.get('password').dirty || formGroup.get('password').touched) && formGroup.controls['password'].invalid && formGroup.get('password').hasError('required')">
+                  Please enter password
+                </mat-error>
+            </div>
+            <button nz-button nzType="primary" class="btn" (click)="login()">Sign in</button>
+          </div>
+
+
+        </form>
+        <!-- <form name="form" #f="ngForm" novalidate>
+          <div class="common-box">
+           
+            <div class="val">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput maxlength="256" #email name="email" placeholder="Enter Email"
+                  [(ngModel)]="formData.email" required [email]="true" />
+
+              </mat-form-field>
+              <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            </div>
+              
+
+            </div>
+          </div>
+          <div class="common-box">
+           
+        <div class="val">
+         
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password"
+              [(ngModel)]="formData.password" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <button nz-button nzType="primary" class="btn" (click)="login()">Sign in</button>
+
+      <div class="remember">
+        <mat-checkbox color="primary">
+          Remember me
+        </mat-checkbox>
+
+      </div>
+      </form> -->
+      </div>
+    </div>
+  </div>
+</div>

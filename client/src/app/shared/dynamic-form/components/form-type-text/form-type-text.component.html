@@ -1,0 +1,181 @@
+<div class="dynamic-field" [formGroup]="group">
+    <div *ngIf="config.type == 'label'">
+        <label [for]="config.fieldId">{{ config.label }}</label>
+        <label *ngIf="config.value"> : {{config.value}}</label>
+    </div>
+    <input *ngIf="config.type == 'hidden'" type="hidden" [formControlName]="config.fieldId" />
+    <div *ngIf="config.type == 'text' || config.type == 'number'">
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{config.label}}</mat-label>
+            <input matInput [type]="config.type" [formControlName]="config.fieldId" [placeholder]="config.label"
+                (change)="onControlChange()">
+
+        </mat-form-field>
+        <!-- <ng-container *ngFor="let validation of config.validations">
+            <mat-error class="error-message"
+                *ngIf="group && group.get(config.fieldId) && group.get(config.fieldId).hasError(validation.type) && (group.get(config.fieldId).dirty || group.get(config.fieldId).touched)">
+                {{validation.message}}</mat-error>
+        </ng-container> -->
+
+    </div>
+    <div *ngIf="config.type == 'textarea'">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+            <textarea matInput [formControlName]="config.fieldId" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+
+    </div>
+    <div *ngIf="config.type == 'select'">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+            <mat-select [formControlName]="config.fieldId">
+                <mat-option>None</mat-option>
+                <ng-container *ngIf="config && config.options && config.options.list && config.options.list.length > 0">
+                    <ng-container *ngFor="let l of config.options.list">
+                        <mat-option
+                            [value]="l[config.options?.valueField]">{{l[config.options?.textField]}}</mat-option>
+                    </ng-container>
+                </ng-container>
+
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div *ngIf="config.type == 'multiselect'">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+            <mat-select [formControlName]="config.fieldId" multiple>
+                <mat-option>None</mat-option>
+                <ng-container *ngIf="config && config.options && config.options.list && config.options.list.length > 0">
+                    <ng-container *ngFor="let l of config.options.list">
+                        <mat-option
+                            [value]="l[config.options?.valueField]">{{l[config.options?.textField]}}</mat-option>
+                    </ng-container>
+                </ng-container>
+
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div *ngIf="config.type == 'fileupload'">
+        <label [for]="config.fieldId">{{ config.label }}</label>
+        <fileUpload (onFileChange)="onFileChange($event)"></fileUpload>
+    </div>
+
+    <div *ngIf="config.type == 'radiobutton'">
+        <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+        <mat-radio-group [formControlName]="config.fieldId">
+            <ng-container *ngIf="config && config.options && config.options.list && config.options.list.length > 0">
+                <ng-container *ngFor="let l of config.options.list">
+                    <mat-radio-button color="primary"
+                        [value]="l[config.options?.valueField]">{{l[config.options?.textField]}}</mat-radio-button>
+                </ng-container>
+            </ng-container>
+        </mat-radio-group>
+    </div>
+
+    <div *ngIf="config.type == 'date'">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+            <input matInput [matDatepicker]="picker" [formControlName]="config.fieldId">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div *ngIf="config.type == 'time'">
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label [for]="config.fieldId">{{config.label}}</mat-label>
+            <input matInput [formControlName]="config.fieldId" [ngxMatTimepicker]="pickerA" readonly />
+            <mat-icon matSuffix (click)="pickerA.open()">
+                watch_later
+            </mat-icon>
+        </mat-form-field>
+        <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+
+    </div>
+
+    <div *ngIf="config.type == 'checkbox'">
+        <mat-checkbox [formControlName]="config.fieldId" color="primary">
+            {{config.label}}
+        </mat-checkbox>
+    </div>
+    <div *ngIf="config.type == 'imageupload'">
+        <app-form-thumbnail (onUploadFile)="onUploadFile($event)"></app-form-thumbnail>
+    </div>
+    <div *ngIf="config.type == 'table' && table">
+        <h3>{{config.label}}</h3>
+        <app-table *ngIf="config.type == 'table' && table" [listOfColumn]="listOfColumn" [gridData]="gridData"
+            [selectionType]="table.selectionType" (actionClick)="tableActionClick($event)" (OnCheckedRow)="onCheckedrow($event , config.fieldId)"></app-table>
+    </div>
+    <div *ngIf="config.type == 'editable_table' && table">
+        <app-editable-table *ngIf="config.type == 'editable_table' && table" [listOfColumn]="listOfColumn"
+            [gridData]="gridData" (actionClick)="tableActionClick($event)"
+            (onValueChange)="onTableValueChange($event, config.fieldId)"></app-editable-table>
+    </div>
+    <div *ngIf="config.type == 'checkboxlist'">
+        <h3>{{config.label}}</h3>
+        <input type="hidden" [formControlName]="config.fieldId" />
+        <checkbox-list *ngIf="config.type == 'checkboxlist'" [cbData]="config.options.list" [controlConfig]="config"
+            [value]="config.value" (onCheckChange)="onCheckChange($event, config.fieldId)"></checkbox-list>
+    </div>
+    <div *ngIf="config.type == 'rangecalender'">
+        <range-datepicker [controlConfig]="config" [value]="config.value"></range-datepicker>
+    </div>
+    <div *ngIf="config.type == 'button'">
+        <button mat-raised-button color="primary" (click)="buttonActionClick(config.event,$event);"><mat-icon *ngif="config.icon">{{config.icon}}</mat-icon>{{config.label}}</button>
+    </div>
+<div *ngIf="config.type == 'schedularCalender'">
+    <mat-label ><h1>{{config.label}}</h1></mat-label>
+    <app-schedular-calender [controlConfig]="config" [gridData]="gridData"></app-schedular-calender>
+</div>
+<div *ngIf="config.type == 'matCards'">
+    <mat-label><h1>{{config.label}}</h1></mat-label>
+<app-mat-cards [controlConfig]="config" [gridData]="gridData"></app-mat-cards>
+</div>
+    <!-- <div *ngIf="config.type == 'number'">
+        <label>{{ config.label }}</label>
+        <nz-input-number [(ngModel)]="demoValue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+    </div>
+<div
+   
+
+    
+
+    <div *ngIf="config.type == 'toggle'">
+        <nz-switch [(ngModel)]="switchValue"></nz-switch>
+        <label>{{ config.label }}</label>
+    </div>
+
+   
+
+    
+
+    <div *ngIf="config.type == 'timepicker'">
+        <label>{{ config.label }}</label>
+        <nz-time-picker [(ngModel)]="time" [nzUse12Hours]="true" (ngModelChange)="log($event)"
+            nzFormat="h:mm a"></nz-time-picker>
+    </div>
+
+    <div *ngIf="config.type == 'fileupload'">
+        <label>{{ config.label }}</label>
+        <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            (nzChange)="handleChange($event)">
+            <p class="ant-upload-drag-icon">
+                <span nz-icon nzType="inbox"></span>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">
+                Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+            </p>
+        </nz-upload>
+    </div> -->
+    <ng-container *ngFor="let validation of config.validations">
+        <mat-error class="error-message"
+            *ngIf="group && group.get(config.fieldId) && group.get(config.fieldId).hasError(validation.type) && (group.get(config.fieldId).dirty || group.get(config.fieldId).touched)">
+            {{validation.message}}</mat-error>
+    </ng-container>
+</div>

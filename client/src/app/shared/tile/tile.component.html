@@ -1,0 +1,6 @@
+<div class="stats" [ngClass]="isClickable==true?'clickable':''" (click)="isClickable==true && onTileClick()">
+    <p class="txt">{{title}}</p>
+    <p class="count">{{count}}</p>
+    <img  class="fwr-arr" src="./assets/img/revamp/blue-arr.svg" alt="">
+    <!-- <img *ngIf="isSelected" class="fwr-arr" src="./assets/img/revamp/white-arr.svg" alt=""> -->
+</div>

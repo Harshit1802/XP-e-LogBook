@@ -1,0 +1,24 @@
+<error-panel *ngIf="errors" [errors]="errors"></error-panel>
+<div *ngIf="page && page.tabs && page.tabs.length > 0; else dynFormTemplate">
+    <mat-tab-group *ngIf="page && page.tabs && page.tabs.length > 0" [selectedIndex]="selectedTabIndex"
+        (selectedIndexChange)="tabChange($event)">
+        <mat-tab *ngFor="let tab of page.tabs; let index = index" [label]="tab.tabName">
+            <dynamic-form *ngIf="index==selectedTabIndex" [config]="page.formConfig" [parentId]="parentId"
+                #form="dynamicForm" (submit)="formSubmit($event)">
+            </dynamic-form>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<ng-template #dynFormTemplate>
+    <div *ngIf="page && page.formConfig">
+        <dynamic-form #dynamicFormRef [config]="page.formConfig" [parentId]="parentId" #form="dynamicForm"
+            (submit)="formSubmit($event)">
+        </dynamic-form>
+    </div>
+</ng-template>
+
+<app-editable-table *ngIf="page && page.table " [table]="page.table" [gridData]="gridData"
+    (actionClick)="tableActionClick($event)"></app-editable-table>
+
+<!-- <app-table *ngIf="page && page.table" [listOfColumn]="listOfColumn" [gridData]="gridData"
+    (actionClick)="tableActionClick($event)"></app-table> -->

@@ -1,0 +1,69 @@
+.top-sub-menu{
+    display: flex;
+    align-items: center;
+    height: 46px;
+    width: 100%;
+    gap: 50px;
+    /* UI Properties */
+    background: #D7DBF1 0% 0% no-repeat padding-box;
+    padding: 0 30px;
+      
+    .sub-menu{
+        font-size: 14px;
+        color: #656B97;       
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .select-menu-wrap{
+        position: relative;
+        min-width: 60px;
+        display: flex;
+        justify-content: center;
+        line-height: 2;
+        cursor: pointer;
+    }
+    .selected-sub-menu{
+        font-size: 14px;
+        color: #121A4E;
+        font-weight: bold;
+       // position: relative;
+    }
+    .selected-menu-bar{
+        position: absolute;
+        top: 31px;
+        width: -webkit-fill-available;
+        left: 0;
+    }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1440px) { 
+    .top-sub-menu{
+      
+        height: 36px;
+       
+        gap: 30px;
+     
+        padding: 0 15px;
+       
+        .sub-menu{
+            font-size: 11px;          
+        }
+        .select-menu-wrap{
+            position: relative;
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+            line-height: 2;
+        }
+        .selected-sub-menu{
+            font-size: 11px;
+         
+        }
+        .selected-menu-bar{
+            top: 25px;
+            width: -webkit-fill-available;
+            left: 0;
+        }
+    }
+}

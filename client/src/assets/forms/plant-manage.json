@@ -1,0 +1,109 @@
+{
+    "pageTitle": "Plant",
+    "type": "popup",
+    "pageConfig": {
+        "parentPageJson": "role",
+        "onPopupClose": "refresh",
+        "defaultData":"parent",
+        "footerActions": [
+            {
+                "type": "button",
+                "label": "Cancel",
+                "icon": "",
+                "event": {
+                    "type": "click",
+                    "onevent": "closeandrefreshparent",
+                    "api": ""
+                }
+            },
+            {
+                "type": "button",
+                "label": "Save",
+                "icon": "plus",
+                "event": {
+                    "type": "click",
+                    "onevent": "postformdata",
+                    "api": "api/common/plants"
+                }
+            }
+        ]
+    },
+    "formConfig": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "width": 8,
+                        "height": "2",
+                        "controls": [
+                            {
+                                "label": "Plant",
+                                "id": "txtRole",
+                                "type": "text",
+                                "fieldId": "name",
+                                "placeholder": "Plant",
+                                "tooltip": "",
+                                "validations": [
+                                    {
+                                        "type": "required",
+                                        "message": "Plant is required"
+                                    }
+                                ],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": ""
+                            }
+                        ]
+                    },
+                    {
+                        "width": 8,
+                        "height": "2",
+                        "controls": [
+                            {
+                                "label": "Location",
+                                "id": "",
+                                "type": "text",
+                                "fieldId": "location",
+                                "placeholder": "location",
+                                "tooltip": "",
+                                "validations": [
+                                    {
+                                        "type": "required",
+                                        "message": "Location is required"
+                                    }
+                                ],
+                                "isDisabled": false,
+                                "isVisible": true,
+                                "isChangeHandle": false,
+                                "css": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+           {
+            "columns":[
+            {
+                "width": 16,
+                "height": "2",
+                "controls": [
+                    {
+                        "label": "Description",
+                        "id": "txtAddressLine1",
+                        "type": "textarea",
+                        "fieldId": "description",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "isDisabled": false,
+                        "isVisible": true,
+                        "isChangeHandle": true,
+                        "css": ""
+                    }
+                ]
+            } 
+        ]
+           }
+        ]
+    }
+}

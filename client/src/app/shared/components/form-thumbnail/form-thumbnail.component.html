@@ -1,0 +1,31 @@
+<div class="container" style="height: 335px; width: 200px;">
+	<div class="row custom-wrapper">
+		<div class="col-md-12">
+      
+			<!-- Form starts -->
+			<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+				<div class="group-gap">
+
+					<!-- Upload image -->
+					<div class="avatar-upload">
+						<div class="avatar-edit">
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg, .svg" #fileInput (change)="onFileSelected($event)" />
+              <button class="close-button" (click)="removeImage()" *ngIf="imageUrl">&#10006;</button>
+              <!-- <button class="edit-button" (click)="editImage()">&#9998;</button> -->
+            </div>
+            <div class="avatar-preview" style="background-color: whitesmoke;">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-lg btn-block" (click)="fileInput.click()">Upload Image</button>
+
+      </form><!-- Form ends -->
+
+    </div>
+  </div>
+</div>

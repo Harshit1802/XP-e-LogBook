@@ -1,0 +1,87 @@
+{
+    "pageTitle": "Permissions",
+    
+    "breadcrumbs": [
+        {
+            "menuName": "Dashboard",
+            "url": "/app/landing"
+        },
+        {
+            "menuName": "Permissions",
+            "url": ""
+        }
+    ],
+    "pageActions": [
+        {
+            "type": "button",
+            "label": "Add new Permission",
+            "icon": "add",
+            "event": {
+                "type": "click",
+                "onevent": "popup",
+                "popupJson": "permission-manage",
+                "popupwidth":"60%"
+            }
+        },
+        {
+            "action": "refresh"
+        },
+        {
+            "action": "export"
+        },
+        {
+            "action": "filter"
+        }
+    ],
+    "filter": [
+        {
+            "name": "permissionName",
+            "type": "textbox",
+            "placeholder": "Permission"
+        }
+    ],
+    "table": {
+        "dataSource": "api/permission/permissions",
+        "tableColumns": [
+            {
+                "key": "permissionName",
+                "title": "Permission"
+            },
+            {
+                "key": "moduleName",
+                "title": "Module"
+            },
+            {
+                "key": "action",
+                "title": "Action",
+                "actions":[
+                    {
+                        "type": "icon-button",
+                        "label": "Edit",
+                        "icon": "edit",
+                        "isDisabled":"false",
+                        "event": {
+                            "type": "click",
+                            "onevent": "popup",
+                            "popupJson": "permission-manage"
+                        }
+                    },
+                    {
+                        "type": "icon-button",
+                        "label": "Delete",
+                        "icon": "delete",
+                        "isDisabled": "false",
+                        "event": {
+                            "type": "click",
+                            "onevent": "popup",
+                            "popupJson": "confirmation-popup",
+                            "popupwidth": "25%",
+                            "api": "api/permission/permissions"
+                        }
+                    }
+                    
+                ]
+            }
+        ]
+    }
+}

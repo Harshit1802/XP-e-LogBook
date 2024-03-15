@@ -1,0 +1,36 @@
+
+<div>
+  
+      <div class="flex-container">
+    <div class="card">
+<label><h1>Pending Task(s) to Schedule</h1></label>
+<div class="box">
+    
+<!-- <mat-card matRipple  (click)="onCardClick(item)"  class="clickable-flex" *ngFor="let item of pendingTask">
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.patientName}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.patientMRN}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.TaskType}}</b></mat-label>
+    </div>
+    <div class="flex">
+        <mat-label class="label-title"><b>{{item.WeekDateRange}}</b></mat-label>
+    </div>
+</mat-card> -->
+<app-mat-cards></app-mat-cards>
+
+</div>
+    </div>
+    <div class="col2">
+        <label><h1>Schedule calendar</h1></label>
+        <app-schedular-calender></app-schedular-calender>
+    </div>
+</div>
+</div>
+<!-- <div *ngIf="page.formConfig">
+    <dynamic-form [config]="page.formConfig" #form="dynamicForm" (submit)="submit($event)">
+    </dynamic-form>
+</div> -->

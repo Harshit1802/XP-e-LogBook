@@ -1,0 +1,133 @@
+<div class="list-wrapper">
+  <div class="nofentries-chartview">
+
+    <div class="entries"> 
+      Show
+      <nz-select name="paginationsize" id="paginationsize" [(ngModel)]="pagination.size" (ngModelChange)="sizeChange()">
+        <nz-option *ngFor="let n of pages" [nzValue]="n" [nzLabel]="n"></nz-option>
+      </nz-select>
+      Entries
+    </div>
+    <ng-content></ng-content>
+
+  </div>
+  <nz-table #sortTable [nzData]="gridData" nzTableLayout="fixed" [nzPageSize]="pagination.size"
+    [nzShowPagination]="false">
+    <thead
+      style="height: 45px;background: transparent linear-gradient(180deg, #627DC7 0%, #3B5497 100%) 0% 0% no-repeat padding-box;">
+      <tr>
+        <th *ngIf="selectionType && selectionType.length > 0">
+          <mat-checkbox *ngIf="selectionType != 'single'" [(ngModel)]="checkAll" [indeterminate]="isindeterminate"
+            (change)="setAllChecked($event.checked)">
+          </mat-checkbox>
+        </th>
+        <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [ngClass]="column.key">
+          {{ column.title }}
+          <ng-container *ngIf="column.key === 'checkbox'">
+            <mat-checkbox *ngIf="column.showCheckbox" [(ngModel)]="checkAll" [indeterminate]="isindeterminate"
+              (change)="setAllChecked($event.checked)">
+            </mat-checkbox>
+          </ng-container>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of sortTable.data">
+        <td *ngIf="selectionType && selectionType.length > 0">
+          <!-- <mat-checkbox [(ngModel)]="data.selected" (ngModelChange)="rowSelectChange(data)">
+
+          </mat-checkbox> -->
+          <mat-checkbox [(ngModel)]="data.selected" (change)="toggleRowSelection($event.checked, data)">
+          </mat-checkbox>
+        </td>
+        <td *ngFor="let header of listOfColumn">
+          <div style="display: flex;">
+            <div *ngIf="data[header.key]">
+              <!--No data type consider as string -->
+              <span class="t2" *ngIf="!header.dataType">
+                <span nz-tooltip [nzTooltipTitle]="data[header.key].length > 24 && data[header.key]"
+                  *ngIf="header.restrictText == true">
+                  {{data[header.key].length > 24 ? (data[header.key] | slice:0:24)+'...' : data[header.key]}}
+                </span>
+                <span class="t1" *ngIf="!header.restrictText && header?.options?.dataFontColor"
+                  [ngStyle]="{'color':data[header.key+'Color'] && header.options && header?.options?.dataFontColor == true ? data[header.key+'Color'] : '' }">
+                  {{ data[header.key]}}
+                </span>
+                <span class="t1" *ngIf="!header.restrictText && !header?.options?.dataFontColor"
+                  [ngStyle]="{'color':data.fontColor && header.options && header.options.fontColor == true ? data.fontColor : '' }">
+                  {{ data[header.key]}}
+                </span>
+              </span>
+              <span *ngIf="header.dataType=='date'">{{data[header.key] | date:header.format}}</span>
+              <span *ngIf="header.dataType=='array'">
+                <span *ngFor="let arr of data[header.key]">
+                  {{arr[header.options.displayKey] }}
+                </span>
+              </span>
+              <span *ngIf="header.dataType === 'object'">
+                {{ data[header.key][header.options.displayKey] }}
+              </span>
+              <div *ngIf="header.statusColumn" [ngClass]="getStatusColor(data[header.key])" class="status-bg">
+                <span>{{data[header.key]}}</span>
+              </div>
+            </div>
+            <div *ngIf="header.key === 'checkbox'">
+              <mat-checkbox *ngIf="header.showCheckbox" [(ngModel)]="data.selected" (change)="rowSelectChange(data)">
+              </mat-checkbox>
+            </div>
+            <div *ngIf="header.key=='action'">
+              <button type="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button type="button" mat-menu-item *ngFor="let action of data.actions" [disabled]="action.isDisabled == true"
+                  (click)="actionItemClick(action,data)">
+                  <mat-icon>{{action.icon}}</mat-icon>
+                  <span>{{action.label}}</span>
+                </button>
+
+              </mat-menu>
+            </div>
+            <div *ngIf="header.key=='reply'">
+              <button type="button" mat-icon-button *ngFor="let action of data.actions" [disabled]="action.isDisabled == true"
+                (click)="actionItemClick(action,data)">
+                <mat-icon>{{action.icon}}</mat-icon>
+                <span>{{action.label}}</span>
+              </button>
+            </div>
+            <div *ngIf="header.key=='delete'">
+              <button type="button" mat-icon-button *ngFor="let action of data.actions" [disabled]="action.isDisabled == true"
+                (click)="actionItemClick(action,data)">
+                <mat-icon>{{action.icon}}</mat-icon>
+                <span>{{action.label}}</span>
+              </button>
+            </div>
+            <div class="toggle-align"
+              *ngIf="header.key=='statusToggle' || (header.options && header.options.statusToggle)">
+              <nz-switch *ngIf="data.toggleVisible" nz-popconfirm [nzTitle]="getTitle(data,header)"
+                nzPopconfirmPlacement="bottom" nzPopconfirmOverlayClassName="popconfirm" [nzOkText]="'Yes'"
+                nzIcon="null" nzSize="small" [nzCancelText]="'No'" nzTheme="outline" [nzControl]="true"
+                (nzOnConfirm)="actionItemClick('toggle',data)" [(ngModel)]="data.statusToggle">
+              </nz-switch>
+            </div>
+
+
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <div class="pagination-wrapper" *ngIf="pagination?.total > 0">
+    <div class="page-counts">
+      Showing {{pagination.total!== 0 ? (pagination.page-1)*pagination.size+1 : 0}}
+      To {{(pagination.page*pagination.size) >
+      pagination.total?pagination.total:(pagination.page*pagination.size)}} Of
+      {{pagination?.total}} Entries
+    </div>
+    <nz-pagination class="page-wrapper" [nzPageSize]="pagination?.size" style="text-align: right; padding-top: 10px;"
+      [nzPageIndex]="pagination.page" *ngIf="pagination.total>10" [nzTotal]="pagination.total"
+      (nzPageIndexChange)="pageChange($event)"></nz-pagination>
+  </div>
+</div>

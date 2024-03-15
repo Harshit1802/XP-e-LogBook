@@ -1,0 +1,121 @@
+<div nz-col nzSpan="24" class="header-wrapper">
+
+    <div class="logo-add-search">
+        <div class="logo">
+            <img src="assets/logo/Home Care XP-logos_white.png" alt="" style="height: 250px; width: 300px;">
+        </div>
+        <!-- <h2 class="text-logo">Xenpark Solution</h2> -->
+        <!-- <div class="add-new">
+            <a nz-dropdown [nzDropdownMenu]="menu">
+                <div class="placeholder">
+                    <div class="add-icon">
+                        <img src="assets/img/revamp/dark-plus.svg" alt="">
+                    </div>
+                    <div class="txt">
+                        Add New
+                    </div>
+                    <span nz-icon nzType="down"></span>
+                </div>
+            </a>
+
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu nzSelectable class="menu-items">
+                    <li class="member common-txt" nz-menu-item><span class="img-view"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="14.984" height="11.96"
+                                viewBox="0 0 14.984 11.96"></svg> </span> <span class="txt">Create Member</span></li>
+                    <li class="partner common-txt" nz-menu-item><span class="img-view"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="14.984" height="11.96"
+                                viewBox="0 0 14.984 11.96"></svg></span> <span class="txt">Create Partner</span></li>
+                    <li class="user common-txt" nz-menu-item><span class="img-view"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="14.984" height="11.96"
+                                viewBox="0 0 14.984 11.96"></svg></span> <span class="txt">Create User</span></li>
+                    <li class="benefit common-txt" nz-menu-item><span class="img-view"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="14.984" height="11.96"
+                                viewBox="0 0 14.984 11.96"></svg></span> <span class="txt">Create Benefits</span></li>
+                </ul>
+            </nz-dropdown-menu>
+        </div> -->
+        <!-- <div class="search-tier">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+      </div> -->
+    </div>
+    <div class="lang-notification-profile">
+        <div class="lang"></div>
+        <div class="seprator"></div>
+        <div class="notification-wrapper">
+            <a href="#" class="notification">
+                <img src="assets/img/revamp/bell.svg" alt="">
+                <span class="badge">3</span>
+            </a>
+        </div>
+        <div class="seprator"></div>
+        <!-- <button nz-button nzType="primary" >Open</button> -->
+        <div class="profile" (click)="open()">
+            <!-- <img src="assets/img/revamp/profile.png" alt=""> -->
+            <nz-avatar nzSrc="./assets/img/revamp/avatar.png" nzSize="small" class="mr-sm"></nz-avatar>
+
+            <div class="name-desig">
+                <div class="p1">Zara Wardani</div>
+                <div class="p2">Admin</div>
+
+            </div>
+        </div>
+    </div>
+   
+    <!-- <app-header></app-header> -->
+</div>
+<nz-drawer [nzClosable]="true" [nzVisible]="isVisible" nzPlacement="right" (nzOnClose)="close()"
+nzWrapClassName="profile-detail" [nzWidth]="329">
+<ng-container *nzDrawerContent>
+    <div class="profile-img-wrapper">
+        <div class="left">
+            <img src="assets/img/revamp/left-bg.svg" alt="">
+        </div>
+        <div class="image">
+            <img [src]="'assets/img/revamp/avatar.png' " alt="">
+            <!-- <nz-list-item-meta-avatar
+  [nzSrc]="photo.title=='Change' ? photo.image : './assets/img/avatar.png' ">
+</nz-list-item-meta-avatar> -->
+        </div>
+        <div class="right">
+            <img src="assets/img/revamp/right-bg.svg" alt="">
+        </div>
+    </div>
+    <div class="profile-info-wrapper">
+
+        <div class="name-email">
+            <div class="name">
+                User Name
+            </div>
+            <div class="email">
+                choudhary@gmail.com
+            </div>
+        </div>
+        <div class="hr-seprator">
+
+        </div>
+
+        <div class="navigation">
+            <div class="user-training">
+                <div class="user-setting" (click)="userProfile()">
+                    <img src="assets/img/revamp/user-account.svg" alt="">
+                    <div class="txt">User Settings</div>
+                </div>
+                <div class="training">
+                    <img src="assets/img/revamp/training.svg" alt="">
+                    <div class="txt">App Settings</div>
+                </div>
+            </div>
+            <div class="logout-btn" (click)="Logout()">
+                <img src="assets/img/revamp/Logout.svg" alt="">
+                <div class="txt">Logout</div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+</nz-drawer>

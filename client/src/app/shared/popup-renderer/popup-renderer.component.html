@@ -1,0 +1,13 @@
+<h2 mat-dialog-title *ngIf="pageAction && page">
+  <span style="margin-right: 4px;" *ngIf="page.pageTitlePrefix">{{pageTitlePrefix}}</span>
+  <span>{{page.pageTitle}}</span>
+</h2>
+<mat-dialog-content class="mat-typography">
+  <app-page-wrapper #pageWrapper [page]="page" ></app-page-wrapper>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="page && page.pageConfig && page.pageConfig.footerActions">
+  <div *ngFor="let action of page.pageConfig.footerActions">
+    <button color="primary" type="button" mat-button (click)="popupActionClick(action,$event);">{{action.label}}</button>
+  </div>
+
+</mat-dialog-actions> 

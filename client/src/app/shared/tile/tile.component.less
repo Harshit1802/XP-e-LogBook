@@ -1,0 +1,73 @@
+.stats{
+    width: 221px;
+    height: 99px;    
+     //background: #FFFFFF 0% 0% no-repeat padding-box;
+    background: url(^assets/img/revamp/stat-bg-light.svg),#FFFFFF ;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 30px #65656526;
+    border-radius: 8px;
+    background-position: 100% 100%;
+    padding: 20px 25px;
+    position: relative;
+    .txt{
+        margin: 0;
+        font-size: 15px;
+        color: #6B778E;
+    }
+    .count{
+        font-size: 24px;
+        font-weight: bold;
+        color: #1A276B;
+        margin: 0;
+    }
+    .fwr-arr{
+        position: absolute;
+        top: 70%;
+        left: 90%;
+    }
+}
+.clicked{
+    background: url(^assets/img/revamp/stat-bg-dark.svg),#FFFFFF;  
+    background-position: 100% 100%; 
+    background-repeat: no-repeat;
+}
+.clickable{
+    cursor: pointer;
+}
+@media (min-width: 1441px) and (max-width: 1700px) { 
+    :host::ng-deep {
+        .stats-wrapper .stats{
+            width: 224px !important;
+        }
+    }
+}
+@media (min-width: 1200px) and (max-width: 1440px) { 
+
+    .stats{
+        width: 159px;
+        height: unset; 
+        padding: 10px 12px;
+        background-size: 30%;
+       
+        .txt{
+            
+            font-size: 11px;
+            
+        }
+        .count{
+            font-size: 18px;            
+        }
+        .fwr-arr{
+            height: 13px;
+            top: 70%;
+            left: 89%;
+        }
+    }
+    .clicked{
+        background: url(^assets/img/revamp/stat-bg-dark.svg),#FFFFFF;  
+        background-position: 100% 100%; 
+        background-repeat: no-repeat;
+    }
+    
+
+}

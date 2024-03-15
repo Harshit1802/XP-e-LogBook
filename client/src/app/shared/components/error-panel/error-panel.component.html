@@ -1,0 +1,17 @@
+<div div class="container" *ngIf="errors">
+    <div class="error-message" *ngIf="objType =='string'">
+        <span>{{ errors }}</span>
+        <button (click)="removeError()">
+            X
+        </button>
+    </div>
+    <div *ngIf="objType == 'array'">
+        <div class="error-message" *ngFor="let error of errors; let i = index">
+            <span>{{ error }}</span>
+            <button  (click)="removeError(i)">
+                X
+            </button>
+        </div>
+    </div>
+
+</div>

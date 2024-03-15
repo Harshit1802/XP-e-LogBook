@@ -1,0 +1,241 @@
+::ng-deep .list-wrapper{
+    .nofentries-chartview{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        .entries{
+            
+        }
+     
+    }
+    
+     table{
+        table-layout: fixed !important;
+        border-left: 1px solid #D1D5E9 !important;
+        border-right: 1px solid #D1D5E9 !important;
+        thead {
+            //width: 1739px;
+            height: 45px;
+            background: transparent linear-gradient(180deg, #627DC7 0%, #3B5497 100%) 0% 0% no-repeat padding-box;
+           // border: 1px solid #C5C9E1 ;
+            tr{
+                th , th:hover{
+                    background: unset !important;
+                    font-size: 15px !important;
+                    color: #FFFFFF !important;
+                    
+                    .ant-table-column-sorter-inner{
+                        color: #FFFFFF !important;
+                    }
+                    padding: 0 12px !important;
+
+                    
+                }
+                .action{
+                    width: 80px;;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding:  12px 16px !important;
+                    font-size: 14px;
+                    font-weight: bold;
+                    .status-bg{
+                        width: 111px;
+                        height: 32px;
+                        border-radius: 6px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .granted{
+                        background: #DDECD0;
+                        span{
+                            color: #4E8124;
+                        }
+                    }
+                    .open{
+                        background: #D7E8F8;
+                        span{
+                            color: #0282F7;
+                        }
+                    }
+                    .more-info{
+                        background: #D5D9FF;
+                        span{
+                            color: #6A74D6;
+                        }
+                    }
+                    .updated{
+                        background: #FFD30059;
+                        span{
+                            color: #AA8C00;
+                        }
+                    }
+                    .not-approved{
+                        background: #ECD6D0;
+                        span{
+                            color: #814624;
+                        }
+                    }
+                    .close{
+                        background: #DDECD0;
+                        span{
+                            color: #4E8124;
+                        }
+                    }
+                    .progress{
+                       
+                        background: #fff7e6;
+                       // border-color: #ffd591;
+                        span{
+                            color: #fa8c16;
+                        }
+                    }
+                    .ant-switch{
+                        background-color: #D19724;   
+                        margin-left: 15px; 
+                    }
+                    .ant-switch-checked{
+                        background-color: #4E8124;
+                        margin-left: 10px; 
+                    }
+                    .toggle-align{
+                        .ant-switch{
+                           
+                            margin-left: 10px; 
+                        }
+                        .ant-switch-checked{
+                          
+                            margin-left: 18px; 
+                        } 
+                    }
+                }
+            }
+            tr td:first-child{
+                color: #1A276B;                
+            }
+        }
+    }
+    .pagination-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .page-counts{
+            font-size: 14px;
+            color: #7A86A1;
+        }
+        .ant-pagination-item{
+            background-color: transparent;
+            border: unset;
+            border-radius: unset;
+        }
+        .ant-pagination-item-active{
+            background: #6B778E 0% 0% no-repeat padding-box !important;
+            box-shadow: 1px 8px 29px #695F972E !important;
+            border-radius: 4px !important;
+            a{
+                color: #FFFFFF !important;
+            }
+        }
+    }
+}
+
+::ng-deep .popconfirm{
+    //background: ;
+    .ant-popover-inner{
+        width: 245px;
+        height: unset;
+        /* UI Properties */
+        background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+        border: 2px solid var(--unnamed-color-ffffff);
+        background: url(^assets/img/revamp/bottom-bar.svg),#FFFFFF ;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        box-shadow: 0px 0px 8px #00000059;
+        border: none;
+        border-radius: 5px;
+    }
+    .ant-popover-message-title{
+        padding: 0;
+        font-size: 13px;
+        color: #6B778E;
+    }
+    .ant-popover-buttons{
+        margin-bottom: 0;
+        text-align: unset;
+        display: flex;
+        
+        gap: 10px;
+    }
+    .ant-btn{
+        width: 70px;
+        height: 30px;
+        /* UI Properties */
+        background: transparent linear-gradient(180deg, #E3EBFB 0%, #C8D8F6 100%) 0% 0% no-repeat padding-box;
+        border-radius: 4px;
+        margin: 0;
+        color: #1A276B;
+        border: none;
+    }
+    .ant-btn-primary{
+        background: transparent linear-gradient(180deg, #4A59B1 0%, #7790D4 100%) 0% 0% no-repeat padding-box; 
+        color: #FFFFFF;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) { 
+
+    ::ng-deep .list-wrapper{
+        .nofentries-chartview{
+            
+            padding-bottom: 10px;
+            .entries{
+    
+            }
+         
+        }
+         table{
+            thead {
+                //width: 1739px;
+                height: 35px;
+              
+                tr{
+                    th , th:hover{
+                       
+                        font-size: 11px !important;
+                        font-weight: unset;
+                        
+                        .ant-table-column-sorter-inner{
+                            
+                        }
+                        //padding: 0 8px !important;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        padding:  8px 12px !important;
+                        font-size: 11px;
+                        
+                        .status-bg{
+                            width: 91px;
+                            height: unset;
+                            padding: 5px;
+                        }
+                       
+                    }
+                }
+                tr td:first-child{
+                            
+                }
+            }
+        }
+    }
+
+}

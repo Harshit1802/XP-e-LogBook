@@ -1,0 +1,27 @@
+<div *ngIf="config">
+  <form
+      class="dynamic-form"
+      [formGroup]="form"
+      (submit)="handleSubmit($event)">
+      <div nz-row *ngFor="let row of config.rows" >
+        <div *ngFor="let column of row.columns" nz-col [nzSpan]="column.width" >
+          <div class="dyncontrol" *ngFor="let control of column.controls">
+            <ng-container
+            dynamicField
+            [config]="control"
+            [group]="form"
+            [parentId]="parentId">
+          </ng-container>
+          </div>
+        </div>
+    
+    </div>
+    <button type="submit" style="visibility: hidden;">Submit</button>
+      <!-- <ng-container
+        *ngFor="let field of config;"
+        dynamicField
+        [config]="field"
+        [group]="form">
+      </ng-container> -->
+    </form>
+</div>

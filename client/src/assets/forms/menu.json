@@ -1,0 +1,64 @@
+[
+    {
+        "menuName": "Dashboard",
+        "icon": "",
+        "href": "",
+        "tooltip": "",
+        "children": []
+    },
+    {
+        "menuName": "Security  Manager",
+        "icon": "",
+        "href": "/page/security-manager",
+        "children": [],
+        "permissions": ["Manage Security Manager"]
+        
+    },
+    {
+        "menuName": "Manage User",
+        "icon": "",
+        "href": "/page/user-list",
+        "children": [],
+        "permissions": ["Add User","Edit User"]
+    },
+ 
+    {
+                "menuName": "Role",
+                "icon": "",
+                "href": "/page/role",
+                "children": [],
+                "permissions": ["Manage Roles"]
+            
+    },
+    {
+        "menuName": "Permissions",
+        "icon": "",
+        "href": "/page/permissions",
+        "children": [],
+        "permissions": ["Manage Permissions"]
+    }
+    ,
+    {
+        "menuName": "Utility",
+        "icon": "",
+        "href": "/page",
+        "children": [
+            {
+                "menuName": "Plant",
+                "icon": "",
+                "href": "/page/plant-list",
+                "children": [],
+                "permissions": ["Manage Plant"]
+            },
+            {
+                "menuName": "Block",
+                "icon": "",
+                "href": "/page/block-list",
+                "children": [],
+                "permissions": ["Manage block"]
+            }
+            
+           
+        ]
+    }
+]
